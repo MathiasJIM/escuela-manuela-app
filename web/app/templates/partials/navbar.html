@@ -1,0 +1,30 @@
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Barra de navegación principal">
+    
+    <!-- Logo + nombre -->
+    <a href="/" class="flex items-center gap-3">
+      <img src="{{ url_for('static', path='img/logo.png') }}" alt="Escudo de la Escuela Manuela Santamaría" class="h-9 w-9 object-cover rounded" />
+      <span class="font-semibold text-slate-900 text-sm md:text-base">Escuela Manuela Santamaría</span>
+    </a>
+
+    <!-- Links desktop -->
+    <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <li><a href="#sobre" class="hover:text-primary-600 transition">Nuestra Escuela</a></li>
+      <li><a href="#diferencia" class="hover:text-primary-600 transition">Servicios</a></li>
+      <li><a href="#noticias" class="hover:text-primary-600 transition">Noticias</a></li>
+      <li><a href="#contacto" class="hover:text-primary-600 transition">Contacto</a></li>
+    </ul>
+
+    <!-- Botón de acceso -->
+    <a href="/login" class="hidden md:inline-flex items-center rounded-xl bg-primary-600 px-4 py-2 text-white text-sm font-medium shadow-soft hover:bg-primary-700 transition">
+      Acceder al Portal
+    </a>
+
+    <!-- Botón menú móvil -->
+    <button type="button" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Abrir menú">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+</header>

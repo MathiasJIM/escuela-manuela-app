@@ -68,3 +68,9 @@ api_router.include_router(
     prefix="/notificaciones",
     tags=["Notificaciones"]
 )
+
+api_router.include_router(
+    notificacion.router,
+    prefix="/health",
+    tags=["Health"]
+)

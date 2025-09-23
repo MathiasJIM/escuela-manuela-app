@@ -1,21 +1,44 @@
-from fastapi import FastAPI
+from pathlib import Path
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from datetime import datetime
+
 from app.api.v1.api_router import api_router
 
 app = FastAPI(title="Sistema Escolar - Escuela Manuela Santamaría")
 
-# Configuración de CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Cambiar esto en producción
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Incluir rutas
-app.include_router(api_router)
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "app" / "static"
+TEMPLATES_DIR = BASE_DIR / "app" / "templates"
 
-@app.get("/", tags=["Base"])
-def read_root():
-    return {"mensaje": "Sistema activo 🚀"}
+
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+templates.env.globals["now"] = datetime.utcnow
+
+
+@app.get("/", response_class=HTMLResponse, tags=["Frontend"])
+async def home(request: Request):
+    return templates.TemplateResponse(
+        "home.html",
+        {"request": request, "title": "Inicio • Escuela Manuela Santamaría"},
+    )
+
+# Salud JSON para monitoreo
+@app.get("/api/health", tags=["Base"])
+def health():
+    return JSONResponse({"status": "ok", "service": "escuela-api"})
+
+# Rutas de API existentes
+app.include_router(api_router)

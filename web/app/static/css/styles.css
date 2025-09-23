@@ -1,0 +1,52 @@
+/* Scroll suave para navegación entre secciones */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Tipografía base: si no carga Tailwind Inter */
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Links con transición */
+a {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Navbar: sombra ligera al hacer scroll */
+header {
+  transition: box-shadow 0.3s ease;
+}
+header.scrolled {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Botón: animación sutil al hover */
+button, .btn {
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+button:hover, .btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Hero overlay extra: degradado */
+.hero-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+}
+
+/* Noticias: efecto hover */
+.news-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Footer links */
+footer a {
+  transition: color 0.2s ease;
+}
+footer a:hover {
+  color: #fff;
+}

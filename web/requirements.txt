@@ -9,3 +9,8 @@ python-jose[cryptography]
 pydantic[email]
 pydantic-settings
 python-multipart
+jinja2
+aiofiles            
+ruff 
+black 
+isort
