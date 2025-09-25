@@ -4,143 +4,222 @@
 
 {% block content %}
 
-<!-- Hero -->
-<section class="relative" aria-label="Imagen de portada">
-  <div class="h-[48vh] md:h-[64vh] w-full">
-    <img src="{{ url_for('static', path='img/hero.jpg') }}" alt="Fachada de la escuela" class="h-full w-full object-cover"/>
+<!-- Hero Section with Carousel -->
+<section class="hero-container">
+  <div class="hero-image-container">
+    <img src="{{ url_for('static', path='img/imagen-de-la-escuela.png') }}" alt="Escuela Manuela Santamarca - Imagen 1" class="hero-image active" data-hero-image="0">
+    <img src="{{ url_for('static', path='img/escuela-image1.webp') }}" alt="Escuela Manuela Santamarca - Imagen 2" class="hero-image" data-hero-image="1">
+    <img src="{{ url_for('static', path='img/escuela-image2.webp') }}" alt="Escuela Manuela Santamarca - Imagen 3" class="hero-image" data-hero-image="2">
+    <img src="{{ url_for('static', path='img/escuela-ninos.jpg') }}" alt="Escuela Manuela Santamarca - Imagen 4" class="hero-image" data-hero-image="3">
+    <img src="{{ url_for('static', path='img/escuela-ninos1.webp') }}" alt="Escuela Manuela Santamarca - Imagen 5" class="hero-image" data-hero-image="4">
+    
+    <div class="hero-overlay">
+      <div class="carousel-indicators">
+        <span class="indicator active" data-slide="0"></span>
+        <span class="indicator" data-slide="1"></span>
+        <span class="indicator" data-slide="2"></span>
+        <span class="indicator" data-slide="3"></span>
+        <span class="indicator" data-slide="4"></span>
+      </div>
+    </div>
   </div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full px-4">
-    <div class="mx-auto max-w-7xl">
-      <div class="inline-block rounded-2xl bg-white/90 px-6 py-4 shadow-soft">
-        <h1 class="text-xl md:text-3xl font-bold text-slate-900">
-          Bienvenidos a la Escuela Manuela Santamaría Rodríguez
-        </h1>
-        <p class="mt-2 text-sm md:text-base text-slate-600">
-          Educación integral con valores, comunidad y excelencia académica.
-        </p>
+  
+  <div class="info-boxes">
+    <div class="info-box" onclick="scrollToSection('noticias')">
+      <div class="info-box-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+          <path d="M18 14h-8"></path>
+          <path d="M18 18h-8"></path>
+          <path d="M18 10h-8"></path>
+          <path d="M18 6h-8"></path>
+        </svg>
+      </div>
+      <h3>Ultimas Noticias</h3>
+    </div>
+    
+    <div class="info-box" onclick="scrollToSection('contacto')">
+      <div class="info-box-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </div>
+      <h3>Ubicación</h3>
+    </div>
+    
+    <div class="info-box" onclick="scrollToSection('nuestra-escuela')">
+      <div class="info-box-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+      </div>
+      <h3>Quienes Somos</h3>
+    </div>
+  </div>
+</section>
+
+<!-- About School Section -->
+<section id="nuestra-escuela" class="about-school-section">
+  <div class="about-content">
+    <div class="about-text">
+      <div class="costa-rica-icon">
+        <img src="{{ url_for('static', path='img/mep-logo.webp') }}" alt="Costa Rica" class="cr-icon" />
+      </div>
+      <h2 class="about-title">
+        En la escuela Manuela<br />
+        Santamaria Rodriguez
+      </h2>
+      <p class="about-description">
+        Brindar una educación integral y de calidad que promueva el desarrollo académico,
+        emocional y social de nuestros estudiantes, fomentando valores como el respeto, la
+        responsabilidad y la solidaridad, en un ambiente inclusivo, seguro y colaborativo que
+        involucre activamente a las familias y a la comunidad educativa.
+      </p>
+    </div>
+
+    <div class="about-images">
+      <div class="main-image">
+        <img src="{{ url_for('static', path='img/escuela-image1.webp') }}" alt="Escuela Manuela Santamaria" />
+      </div>
+      <div class="image-grid">
+        <img src="{{ url_for('static', path='img/escuela-ninos.jpg') }}" alt="Estudiantes" class="grid-image" />
+        <img src="{{ url_for('static', path='img/escuela-ninos1.webp') }}" alt="Actividades escolares" class="grid-image" />
+        <img src="{{ url_for('static', path='img/escuela-ninos3.webp') }}" alt="Estudiantes en clase" class="grid-image" />
       </div>
     </div>
   </div>
 </section>
 
-<!-- Sobre la escuela -->
-<section id="sobre" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid md:grid-cols-2 gap-10 items-start">
-  <div>
-    <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Nuestra Escuela</h2>
-    <p class="mt-4 text-slate-600 leading-relaxed">
-      La Escuela Manuela Santamaría Rodríguez es una institución educativa pública
-      dedicada a brindar una formación integral basada en valores como el respeto,
-      la responsabilidad y el compromiso social.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a href="#diferencia" class="rounded-xl bg-primary-600 px-4 py-2 text-white text-sm font-medium shadow-soft hover:bg-primary-700">Conocer más</a>
-      <a href="#contacto" class="rounded-xl bg-white px-4 py-2 text-sm font-medium text-primary-700 ring-1 ring-primary-200 hover:bg-primary-50">Contacto</a>
-    </div>
-  </div>
-  <div class="grid grid-cols-3 gap-3">
-    <img src="{{ url_for('static', path='img/galeria-1.jpg') }}" class="col-span-2 rounded-2xl shadow-soft object-cover h-48 md:h-64" alt="Actividad estudiantil"/>
-    <img src="{{ url_for('static', path='img/galeria-2.jpg') }}" class="rounded-2xl shadow-soft object-cover h-48 md:h-64" alt="Estudiantes en evento"/>
-    <img src="{{ url_for('static', path='img/galeria-3.jpg') }}" class="rounded-2xl shadow-soft object-cover h-40 md:h-56" alt="Docentes y comunidad"/>
-    <img src="{{ url_for('static', path='img/hero.jpg') }}" class="col-span-2 rounded-2xl shadow-soft object-cover h-40 md:h-56" alt="Entrada principal"/>
-  </div>
-</section>
+<!-- What Makes Us Different Section -->
+<section id="servicios" class="diferencias-section">
+  <div class="diferencias-content">
+    <h2 class="section-title">¿Qué Nos Diferencia?</h2>
 
-<!-- Qué nos diferencia -->
-<section id="diferencia" class="bg-slate-50 py-16" aria-label="Qué nos diferencia">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h2 class="text-center text-2xl md:text-3xl font-bold text-slate-900">¿Qué nos diferencia?</h2>
-    <p class="mt-2 text-center text-slate-600">Acompañamiento cercano, formación integral y comunidad educativa.</p>
+    <div class="cards-container">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ url_for('static', path='img/escuela-ninos.jpg') }}" alt="Comunidad educativa" />
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Gran comunidad educativa</h3>
+          <p class="card-description">
+            La escuela cuenta con actividades que hacen que los estudiantes la pasen súper y que
+            desarrollen sus habilidades y talentos únicos.
+          </p>
+        </div>
+      </div>
 
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <article class="rounded-2xl bg-white shadow-soft overflow-hidden">
-        <img src="{{ url_for('static', path='img/galeria-1.jpg') }}" alt="Comunidad educativa" class="h-44 w-full object-cover"/>
-        <div class="p-5">
-          <h3 class="font-semibold text-slate-900">Gran comunidad educativa</h3>
-          <p class="mt-2 text-sm text-slate-600">Actividades y proyectos que impulsan habilidades y valores.</p>
+      <!-- Card 2 -->
+      <div class="card card-reverse">
+        <div class="card-image">
+          <img src="{{ url_for('static', path='img/escuela-ninos1.webp') }}" alt="Acompañamiento docente" />
         </div>
-      </article>
-      <article class="rounded-2xl bg-white shadow-soft overflow-hidden">
-        <img src="{{ url_for('static', path='img/galeria-2.jpg') }}" alt="Acompañamiento docente" class="h-44 w-full object-cover"/>
-        <div class="p-5">
-          <h3 class="font-semibold text-slate-900">Acompañamiento cercano</h3>
-          <p class="mt-2 text-sm text-slate-600">Docentes comprometidos con el progreso académico y emocional.</p>
+        <div class="card-content">
+          <h3 class="card-title">Acompañamiento cercano</h3>
+          <p class="card-description">
+            Nuestros docentes brindan un seguimiento personalizado a cada estudiante, 
+            asegurando su desarrollo académico y emocional integral.
+          </p>
         </div>
-      </article>
-      <article class="rounded-2xl bg-white shadow-soft overflow-hidden">
-        <img src="{{ url_for('static', path='img/galeria-3.jpg') }}" alt="Formación integral" class="h-44 w-full object-cover"/>
-        <div class="p-5">
-          <h3 class="font-semibold text-slate-900">Formación integral</h3>
-          <p class="mt-2 text-sm text-slate-600">Deporte, arte y ciudadanía activa para una educación completa.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ url_for('static', path='img/escuela-ninos3.webp') }}" alt="Formación integral" />
         </div>
-      </article>
+        <div class="card-content">
+          <h3 class="card-title">Formación integral</h3>
+          <p class="card-description">
+            Promovemos el desarrollo completo de nuestros estudiantes a través de programas
+            académicos, culturales, deportivos y de valores ciudadanos.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Noticias -->
-<section id="noticias" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-label="Noticias">
-  <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Últimas noticias</h2>
-  <div class="mt-6 space-y-6">
-    <a href="#" class="block rounded-2xl border border-slate-100 bg-white p-5 shadow-soft hover:shadow-md transition">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <div>
-          <h3 class="font-semibold text-slate-900">Proyecto Ambiental gana premio nacional</h3>
-          <p class="mt-1 text-sm text-slate-600">Reconocimiento por nuestro programa de reciclaje implementado en la escuela.</p>
-        </div>
-        <time class="text-sm text-slate-500">15 de abril de 2025</time>
+<!-- News Section -->
+<section id="noticias" class="noticias-section">
+  <div class="noticias-container">
+    <div class="section-header">
+      <h2>Últimas Noticias</h2>
+    </div>
+    
+    <div class="noticias-list">
+      <div class="noticia-item">
+        <div class="noticia-date">15 de abril de 2025</div>
+        <h3 class="noticia-title">Proyecto Ambiental Gana Premio Nacional</h3>
+        <p class="noticia-description">Nuestros estudiantes de sexto grado recibieron reconocimiento nacional por su innovador proyecto de reciclaje implementado en la escuela.</p>
       </div>
-    </a>
-    <a href="#" class="block rounded-2xl border border-slate-100 bg-white p-5 shadow-soft hover:shadow-md transition">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <div>
-          <h3 class="font-semibold text-slate-900">Nueva Biblioteca Digital</h3>
-          <p class="mt-1 text-sm text-slate-600">Acceso a más de 5,000 libros y recursos educativos para toda la comunidad.</p>
-        </div>
-        <time class="text-sm text-slate-500">2 de marzo de 2025</time>
+      
+      <div class="noticia-item">
+        <div class="noticia-date">2 de marzo de 2025</div>
+        <h3 class="noticia-title">Nueva Biblioteca Digital</h3>
+        <p class="noticia-description">Anunciamos la apertura de nuestra biblioteca digital con acceso a más de 5,000 libros y recursos educativos para todos los estudiantes.</p>
       </div>
-    </a>
-    <a href="#" class="block rounded-2xl border border-slate-100 bg-white p-5 shadow-soft hover:shadow-md transition">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <div>
-          <h3 class="font-semibold text-slate-900">Intercambio Cultural</h3>
-          <p class="mt-1 text-sm text-slate-600">Conexión con escuelas de España y Argentina este semestre.</p>
-        </div>
-        <time class="text-sm text-slate-500">18 de enero de 2025</time>
+      
+      <div class="noticia-item">
+        <div class="noticia-date">18 de enero de 2025</div>
+        <h3 class="noticia-title">Intercambio Cultural con Escuelas Internacionales</h3>
+        <p class="noticia-description">Un programa de intercambio virtual conectará a nuestros estudiantes con niños de escuelas en España y Argentina este semestre.</p>
       </div>
-    </a>
+    </div>
   </div>
 </section>
 
-<!-- Ubicación -->
-<section class="bg-slate-50 py-16" aria-label="Ubicación">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 items-start">
-    <div class="md:col-span-2">
-      <div class="rounded-2xl overflow-hidden shadow-soft">
-        <iframe
-          title="Mapa de ubicación"
-          width="100%" height="420" style="border:0"
-          loading="lazy" allowfullscreen
-          src="https://www.google.com/maps?q=Escuela%20Manuela%20Santamar%C3%ADa%20Rodr%C3%ADguez%20Alajuela&output=embed">
+<!-- Location Section -->
+<section id="contacto" class="ubicacion-section">
+  <div class="ubicacion-container">
+    <div class="section-header">
+      <h2>Ubicación</h2>
+    </div>
+    
+    <div class="ubicacion-content">
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7234567890123!2d-84.21234567890123!3d10.01234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDAwJzQ0LjQiTiA4NMKwMTInNDQuNCJX!5e0!3m2!1sen!2scr!4v1234567890123!5m2!1sen!2scr"
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="true" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
-    </div>
-    <aside class="rounded-2xl bg-white p-6 shadow-soft">
-      <h3 class="font-semibold text-slate-900">Dirección</h3>
-      <p class="mt-2 text-sm text-slate-600">Desamparados, Alajuela, Costa Rica</p>
-
-      <div class="mt-4 space-y-1 text-sm">
-        <p><span class="font-medium">Tel: </span>+506 2430 1392</p>
-        <p><span class="font-medium">Correo: </span><a class="underline text-primary-700" href="mailto:info@escuelamanuela.ed.cr">info@escuelamanuela.ed.cr</a></p>
+      
+      <div class="location-info">
+        <div class="location-item">
+          <h3 class="school-name">Escuela Manuela Santamaría</h3>
+          <div class="location-details">
+            <div class="location-icon">
+              <i class="fas fa-location-dot"></i>
+            </div>
+            <p class="address">Desamparados, Alajuela, Costa Rica</p>
+          </div>
+          <div class="location-details">
+            <div class="location-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <p class="phone">+506 2430 1392</p>
+          </div>
+        </div>
+        
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Escuela%20Manuela%20Santamar%C3%ADa%20Rodr%C3%ADguez%20Alajuela" target="_blank" class="map-directions-button">
+          <i class="fas fa-directions"></i>
+          CÓMO LLEGAR
+        </a>
       </div>
-
-      <a target="_blank"
-         href="https://www.google.com/maps/dir/?api=1&destination=Escuela%20Manuela%20Santamar%C3%ADa%20Rodr%C3%ADguez%20Alajuela"
-         class="mt-6 inline-flex rounded-xl bg-primary-600 px-4 py-2 text-white text-sm font-medium shadow-soft hover:bg-primary-700">
-         Cómo llegar
-      </a>
-    </aside>
+    </div>
   </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/home.js') }}"></script>
 {% endblock %}

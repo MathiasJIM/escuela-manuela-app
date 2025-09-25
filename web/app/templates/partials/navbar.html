@@ -1,30 +1,82 @@
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
-  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Barra de navegación principal">
-    
-    <!-- Logo + nombre -->
-    <a href="/" class="flex items-center gap-3">
-      <img src="{{ url_for('static', path='img/logo.png') }}" alt="Escudo de la Escuela Manuela Santamaría" class="h-9 w-9 object-cover rounded" />
-      <span class="font-semibold text-slate-900 text-sm md:text-base">Escuela Manuela Santamaría</span>
+<!-- templates/partials/navbar.html (ACTUALIZADO PARA FASTAPI) -->
+{% set current_path = request.url.path %}
+{% set on_home = current_path == "/" %}
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-container">
+    <a href="{{ url_for('home') }}" class="logo">
+      <img src="{{ url_for('static', path='img/logo-escuela.webp') }}" alt="Logo Escuela" />
     </a>
 
-    <!-- Links desktop -->
-    <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
-      <li><a href="#sobre" class="hover:text-primary-600 transition">Nuestra Escuela</a></li>
-      <li><a href="#diferencia" class="hover:text-primary-600 transition">Servicios</a></li>
-      <li><a href="#noticias" class="hover:text-primary-600 transition">Noticias</a></li>
-      <li><a href="#contacto" class="hover:text-primary-600 transition">Contacto</a></li>
-    </ul>
+    <!-- Desktop Links -->
+    <div class="links">
+      <div class="nav-items">
+        <a href="{{ '#nuestra-escuela' if on_home else '/#nuestra-escuela' }}" 
+           class="nav-link" 
+           data-section="nuestra-escuela">Nuestra Escuela</a>
+        <a href="{{ '#servicios' if on_home else '/#servicios' }}" 
+           class="nav-link" 
+           data-section="servicios">Servicios</a>
+        <a href="{{ '#noticias' if on_home else '/#noticias' }}" 
+           class="nav-link" 
+           data-section="noticias">Noticias</a>
+        <a href="{{ '#contacto' if on_home else '/#contacto' }}" 
+           class="nav-link" 
+           data-section="contacto">Contacto</a>
+        <a href="{{ url_for('junta_patronato') }}" 
+           class="nav-link {% if 'junta' in current_path %}active{% endif %}">Junta y Patronato</a>
+        <a href="{{ url_for('login') }}" class="nav-link portal-link">
+          Acceder al Portal 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="portal-icon">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+        </a>
+      </div>
+    </div>
 
-    <!-- Botón de acceso -->
-    <a href="/login" class="hidden md:inline-flex items-center rounded-xl bg-primary-600 px-4 py-2 text-white text-sm font-medium shadow-soft hover:bg-primary-700 transition">
-      Acceder al Portal
-    </a>
-
-    <!-- Botón menú móvil -->
-    <button type="button" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Abrir menú">
-      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars menu-icon"></i>
+      <span>MENU</span>
     </button>
-  </nav>
-</header>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <a href="{{ url_for('home') }}" class="logo">
+        <img src="{{ url_for('static', path='img/logo-escuela.webp') }}" alt="Logo Escuela" />
+      </a>
+      <button class="close-button" id="closeMobileMenu" aria-label="Close Menu">
+        <i class="fas fa-xmark close-icon"></i>
+        <span class="close-text">CERRAR</span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-content">
+      <div class="mobile-nav-items">
+        <a href="{{ '#nuestra-escuela' if on_home else '/#nuestra-escuela' }}" 
+           class="mobile-nav-link" 
+           data-section="nuestra-escuela">Nuestra Escuela</a>
+        <a href="{{ '#servicios' if on_home else '/#servicios' }}" 
+           class="mobile-nav-link" 
+           data-section="servicios">Servicios</a>
+        <a href="{{ '#noticias' if on_home else '/#noticias' }}" 
+           class="mobile-nav-link" 
+           data-section="noticias">Noticias</a>
+        <a href="{{ url_for('junta_patronato') }}" 
+           class="mobile-nav-link {% if 'junta' in current_path %}active{% endif %}">Junta y Patronato</a>
+        <a href="{{ '#contacto' if on_home else '/#contacto' }}" 
+           class="mobile-nav-link" 
+           data-section="contacto">Contacto</a>
+        <a href="{{ url_for('login') }}" 
+           class="mobile-nav-link portal-mobile-link">Acceder al Portal</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- FontAwesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

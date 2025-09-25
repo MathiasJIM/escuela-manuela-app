@@ -18,7 +18,7 @@
   <!-- TailwindCSS (CDN para iterar rápido; luego migramos a build con PostCSS/Purge) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
+  tailwind.config = {
       theme: {
         extend: {
           colors: {
@@ -47,7 +47,10 @@
   </script>
 
   <!-- CSS propio -->
+  <link rel="stylesheet" href="{{ url_for('static', path='css/variables.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}">
 
   {% block extra_head %}{% endblock %}
 </head>
@@ -63,6 +66,8 @@
   <!-- Footer (lo creamos en el siguiente archivo) -->
   {% include "partials/footer.html" %}
 
+  <!-- Scripts -->
+  <script src="{{ url_for('static', path='js/navbar.js') }}"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

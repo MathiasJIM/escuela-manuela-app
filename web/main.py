@@ -35,6 +35,22 @@ async def home(request: Request):
         {"request": request, "title": "Inicio • Escuela Manuela Santamaría"},
     )
 
+# Placeholder: Junta y Patronato
+@app.get("/junta-patronato", response_class=HTMLResponse, name="junta_patronato")
+async def junta_patronato(request: Request):
+    return templates.TemplateResponse(
+        "junta_patronato.html",
+        {"request": request, "page_title": "Junta y Patronato"}
+    )
+
+# Placeholder: Login
+@app.get("/login", response_class=HTMLResponse, name="login")
+async def login(request: Request):
+    return templates.TemplateResponse(
+        "login.html",
+        {"request": request, "page_title": "Acceder al Portal"}
+    )
+
 # Salud JSON para monitoreo
 @app.get("/api/health", tags=["Base"])
 def health():
